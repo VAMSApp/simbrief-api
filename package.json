@@ -4,6 +4,14 @@
   "description": "TypeScript HTTP API wrapper library for Simbrief API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": {
+    "name": "Mike DeVita",
+    "email": "mike@devita.co"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VAMSApp/simbrief-api"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "ts-node --esm src/index.ts",
@@ -19,7 +27,6 @@
     "typescript",
     "wrapper"
   ],
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
