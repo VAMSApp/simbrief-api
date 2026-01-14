@@ -1,0 +1,44 @@
+{
+  "name": "simbrief-api",
+  "version": "0.1.0",
+  "description": "TypeScript HTTP API wrapper library for Simbrief API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node --esm src/index.ts",
+    "test": "mocha --timeout 20000 --require ts-node/register src/**/*.spec.ts",
+    "test:debug": "tsx test.ts",
+    "test:watch": "mocha -w --timeout 20000 --require ts-node/register src/**/*.spec.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "api",
+    "http",
+    "axios",
+    "typescript",
+    "wrapper"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
+    "@types/nock": "^10.0.3",
+    "@types/node": "^20.10.0",
+    "chai": "^6.2.2",
+    "mocha": "^11.7.5",
+    "nock": "^14.0.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
