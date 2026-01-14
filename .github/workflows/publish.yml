@@ -61,20 +61,16 @@ jobs:
       - name: Publish to npm
         run: npm publish
       
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          name: Release ${{ steps.get_version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
-            ## Release ${{ steps.get_version.outputs.version }}
-            
-            Automated release from GitHub Actions.
-            
-            ### Installation
-            ```bash
-            npm install simbrief-api@${{ steps.get_version.outputs.version }}
-            ```
+            Changes in this Release
+            - See commit history for changes
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
