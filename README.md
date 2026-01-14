@@ -271,6 +271,79 @@ npm run test:watch
 npm run test:debug
 ```
 
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment. The workflow includes:
+
+### Automated Testing
+
+- **Test Workflow** (`.github/workflows/test.yml`):
+  - Runs on every push and pull request
+  - Tests on Node.js versions 18.x and 20.x
+  - Installs dependencies, runs tests, and verifies build
+  - Ensures code quality before merging
+
+### Automated Publishing
+
+- **Publish Workflow** (`.github/workflows/publish.yml`):
+  - Triggers when a version tag is pushed (e.g., `v1.0.0`, `v2.1.3`)
+  - Runs tests and builds the project
+  - Automatically publishes to npm
+  - Creates a GitHub release
+
+### Setting up NPM Publishing
+
+To enable automatic publishing to npm, you need to:
+
+1. **Create an NPM access token**:
+   - Go to https://www.npmjs.com/settings/YOUR_USERNAME/tokens
+   - Click "Generate New Token"
+   - Select "Automation" token type
+   - Copy the token (you won't see it again)
+
+2. **Add the token to GitHub Secrets**:
+   - Go to your repository on GitHub
+   - Navigate to Settings → Secrets and variables → Actions
+   - Click "New repository secret"
+   - Name: `NPM_TOKEN`
+   - Value: Paste your NPM access token
+   - Click "Add secret"
+
+### Creating a Release
+
+To publish a new version to npm:
+
+1. **Update the version in `package.json`** (or it will be updated automatically from the tag)
+
+2. **Create and push a version tag**:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+   Or create an annotated tag:
+   ```bash
+   git tag -a v1.0.0 -m "Release version 1.0.0"
+   git push origin v1.0.0
+   ```
+
+3. **The workflow will automatically**:
+   - Run all tests
+   - Build the project
+   - Extract version from the tag
+   - Update `package.json` version (if needed)
+   - Publish to npm
+   - Create a GitHub release
+
+### Version Tag Format
+
+Version tags must follow the semantic versioning format:
+- `v1.0.0` (major.minor.patch)
+- `v2.1.3`
+- `v0.1.0`
+
+The workflow will automatically extract the version number (removing the `v` prefix) and use it for publishing.
+
 ## License
 
 MIT
