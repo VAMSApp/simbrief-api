@@ -1,6 +1,6 @@
 {
   "name": "simbrief-api",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "TypeScript HTTP API wrapper library for Simbrief API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
